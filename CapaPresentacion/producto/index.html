@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Productos</title>
+</head>
+<body>
+
+<h2>Gestión de Productos</h2>
+
+<!-- BOTÓN NUEVO -->
+<button onclick="mostrarFormulario()">➕ Nuevo Producto</button>
+
+<br><br>
+
+<!-- TABLA -->
+<table border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tabla-productos">
+        <!-- JS carga aquí -->
+    </tbody>
+</table>
+
+<hr>
+
+<!-- FORMULARIO -->
+<div id="formularioProducto" style="display:none">
+    <h3 id="titulo-form">Crear Producto</h3>
+
+    <form onsubmit="guardarProducto(event)">
+        <input type="hidden" id="producto_id">
+
+        <label>Nombre</label><br>
+        <input id="nombre" required><br><br>
+
+        <label>Descripción</label><br>
+        <input id="descripcion"><br><br>
+
+        <label>Precio</label><br>
+        <input id="precio" type="number" step="0.01" required><br><br>
+
+        <label>Stock</label><br>
+        <input id="stock" type="number" min="0" required><br><br>
+
+        <button id="btn-guardar">💾 Guardar</button>
+        <button type="button" onclick="ocultarFormulario()">❌ Cancelar</button>
+    </form>
+</div>
+
+<script src="./../js/productos.js"></script>
+
+</body>
+</html>
