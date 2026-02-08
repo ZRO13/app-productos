@@ -1,12 +1,23 @@
 const API_URL = "http://localhost/app-productos/CapaPresentacion/api/productos.php";
 
-
-function mostrarFormulario() {
-    document.getElementById("formularioProducto").style.display = "block";
+function setModoCrear() {
+    limpiarFormulario();
+    document.getElementById("titulo-form").innerText = "Crear Producto";
+    document.getElementById("btn-guardar").innerText = "💾 Guardar";
 }
 
+function mostrarFormulario() {
+    limpiarFormulario();
+setModoCrear()
+    document.getElementById("titulo-form").innerText = "Crear Producto";
+    document.getElementById("btn-guardar").innerText = "💾 Guardar";
+
+    document.getElementById("formularioProducto").classList.remove("hidden");
+}
+
+
 function ocultarFormulario() {
-    document.getElementById("formularioProducto").style.display = "none";
+    document.getElementById("formularioProducto").classList.add("hidden");
     limpiarFormulario();
 }
 
@@ -22,7 +33,7 @@ function limpiarFormulario() {
 async function listarProductos() {
     const res = await fetch(API_URL);
     const data = await res.json();
-
+console.log(data)
     const tbody = document.getElementById("tabla-productos");
     tbody.innerHTML = "";
 
@@ -90,7 +101,7 @@ async function editarProducto(id) {
     document.getElementById("titulo-form").innerText = "Editar Producto";
     document.getElementById("btn-guardar").innerText = "Actualizar";
 
-    mostrarFormulario();
+    document.getElementById("formularioProducto").classList.remove("hidden");
 }
 
 //    ELIMINAR

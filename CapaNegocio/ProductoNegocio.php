@@ -51,7 +51,8 @@ class ProductoNegocio {
                 $row['id'],
                 $row['nombre'],
                 $row['precio'],
-                $row['stock']
+                $row['stock'],
+                $row['descripcion']
             );
         }
         if(count($dtos)==0){
@@ -80,7 +81,8 @@ class ProductoNegocio {
             $row['id'],
             $row['nombre'],
             $row['precio'],
-            $row['stock']
+            $row['stock'],
+            $row['descripcion']
         );
     }
 

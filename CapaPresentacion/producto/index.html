@@ -3,56 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Productos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<h2>Gestión de Productos</h2>
+<body class="bg-gray-100 min-h-screen p-6">
 
-<!-- BOTÓN NUEVO -->
-<button onclick="mostrarFormulario()">➕ Nuevo Producto</button>
+<div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow">
 
-<br><br>
+    <!-- TÍTULO -->
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-700">
+            Gestión de Productos
+        </h2>
 
-<!-- TABLA -->
-<table border="1" cellpadding="8">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody id="tabla-productos">
-        <!-- JS carga aquí -->
-    </tbody>
-</table>
+        <button 
+            onclick="mostrarFormulario()"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded flex items-center gap-2"
+        >
+            ➕ Nuevo Producto
+        </button>
+    </div>
+    <!-- FORMULARIO -->
+    <div id="formularioProducto" class="hidden mt-8">
+        <div class="bg-gray-50 p-6 rounded-lg border">
+            <h3 id="titulo-form" class="text-xl font-semibold text-gray-700 mb-4">
+                Crear Producto
+            </h3>
 
-<hr>
+            <form onsubmit="guardarProducto(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <input type="hidden" id="producto_id">
 
-<!-- FORMULARIO -->
-<div id="formularioProducto" style="display:none">
-    <h3 id="titulo-form">Crear Producto</h3>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600">Nombre</label>
+                    <input id="nombre" required
+                        class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300">
+                </div>
 
-    <form onsubmit="guardarProducto(event)">
-        <input type="hidden" id="producto_id">
+                <div>
+                    <label class="block text-sm font-medium text-gray-600">Descripción</label>
+                    <input id="descripcion"
+                        class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300">
+                </div>
 
-        <label>Nombre</label><br>
-        <input id="nombre" required><br><br>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600">Precio</label>
+                    <input id="precio" type="number" step="0.01" required
+                        class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300">
+                </div>
 
-        <label>Descripción</label><br>
-        <input id="descripcion"><br><br>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600">Stock</label>
+                    <input id="stock" type="number" min="0" required
+                        class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300">
+                </div>
 
-        <label>Precio</label><br>
-        <input id="precio" type="number" step="0.01" required><br><br>
+                <div class="col-span-2 flex justify-end gap-3 mt-4">
+                    <button
+                        id="btn-guardar"
+                        class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded"
+                    >
+                        💾 Guardar
+                    </button>
 
-        <label>Stock</label><br>
-        <input id="stock" type="number" min="0" required><br><br>
+                    <button
+                        type="button"
+                        onclick="ocultarFormulario()"
+                        class="bg-gray-400 hover:bg-gray-500 text-white px-5 py-2 rounded"
+                    >
+                        ❌ Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- TABLA -->
+    <div class="overflow-x-auto mt-2">
+        <table class="w-full border border-gray-200 text-sm">
+            <thead class="bg-gray-100 text-gray-600 uppercase">
+                <tr>
+                    <th class="px-4 py-2 border">No</th>
+                    <th class="px-4 py-2 border">Nombre</th>
+                    <th class="px-4 py-2 border">Precio</th>
+                    <th class="px-4 py-2 border">Stock</th>
+                    <th class="px-4 py-2 border text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-productos" class="text-gray-700">
+                <!-- JS carga aquí -->
+            </tbody>
+        </table>
+    </div>
 
-        <button id="btn-guardar">💾 Guardar</button>
-        <button type="button" onclick="ocultarFormulario()">❌ Cancelar</button>
-    </form>
+
+
 </div>
 
 <script src="./../js/productos.js"></script>
